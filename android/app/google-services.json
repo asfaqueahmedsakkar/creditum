@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "866123630416",
+    "project_id": "credit-debit-manager-123",
+    "storage_bucket": "credit-debit-manager-123.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:866123630416:android:26c8d7b82919c77fac8e55",
+        "android_client_info": {
+          "package_name": "com.example.cbm"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "866123630416-bvi43bj41a5pcc19eu7bstqcdhd9aroi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC_gRfNT4xMsZRzd6Us0Fsj6gOIeOTU3-A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "866123630416-bvi43bj41a5pcc19eu7bstqcdhd9aroi.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "866123630416-bat6cf52dqeesk7se53rg0j4m52g8e1g.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.speedcoders.creditum"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:866123630416:android:62be5618828f0830ac8e55",
+        "android_client_info": {
+          "package_name": "com.speedcoders.creditum"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "866123630416-bvi43bj41a5pcc19eu7bstqcdhd9aroi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC_gRfNT4xMsZRzd6Us0Fsj6gOIeOTU3-A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "866123630416-bvi43bj41a5pcc19eu7bstqcdhd9aroi.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "866123630416-bat6cf52dqeesk7se53rg0j4m52g8e1g.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.speedcoders.creditum"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>866123630416-bat6cf52dqeesk7se53rg0j4m52g8e1g.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.866123630416-bat6cf52dqeesk7se53rg0j4m52g8e1g</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAPUFnd7vvDwi9MOFmDhg6l29v85Gn5oUQ</string>
+	<key>GCM_SENDER_ID</key>
+	<string>866123630416</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.speedcoders.creditum</string>
+	<key>PROJECT_ID</key>
+	<string>credit-debit-manager-123</string>
+	<key>STORAGE_BUCKET</key>
+	<string>credit-debit-manager-123.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:866123630416:ios:62fe2dbef806110eac8e55</string>
+</dict>
+</plist>
