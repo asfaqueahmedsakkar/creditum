@@ -129,6 +129,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.7.0"
+  floating_bottom_navigation_bar:
+    dependency: "direct main"
+    description:
+      name: floating_bottom_navigation_bar
+      sha256: "2ecffcb10841c8bf1a084adaef544ecd5451577b31bd80767e6bab1875c941a6"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.5.2"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -341,6 +349,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.0"
+  swatcher:
+    dependency: "direct main"
+    description:
+      name: swatcher
+      sha256: "48480f6f4fe08fa174f9581619e4cf9df4964b69bab4c5f0e8f007d4f51649b9"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.1.0"
   term_glyph:
     dependency: transitive
     description:

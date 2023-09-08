@@ -13,6 +13,8 @@ dependencies:
 
   google_fonts: any
   font_awesome_flutter: any
+  swatcher: any
+  floating_bottom_navigation_bar: any
 
   flutter: 
     sdk: flutter
