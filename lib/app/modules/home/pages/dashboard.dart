@@ -1,6 +1,6 @@
-import 'package:creditum/app/code/components/my_card.dart';
-import 'package:creditum/app/code/components/transaction_tile.dart';
-import 'package:creditum/app/code/values/colors.dart';
+import 'package:creditum/app/core/components/my_card.dart';
+import 'package:creditum/app/core/components/transaction_tile.dart';
+import 'package:creditum/app/core/values/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 

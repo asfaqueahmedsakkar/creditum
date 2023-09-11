@@ -1,4 +1,4 @@
-import 'package:creditum/app/code/values/colors.dart';
+import 'package:creditum/app/core/values/colors.dart';
 import 'package:creditum/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';

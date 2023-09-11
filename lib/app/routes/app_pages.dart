@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
 
+import '../modules/add_accont/bindings/add_accont_binding.dart';
+import '../modules/add_accont/views/add_accont_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/splash_screen/bindings/splash_screen_binding.dart';
@@ -22,6 +24,11 @@ class AppPages {
       name: _Paths.SPLASH_SCREEN,
       page: () => const SplashScreenView(),
       binding: SplashScreenBinding(),
+    ),
+    GetPage(
+      name: _Paths.ADD_ACCONT,
+      page: () => const AddAccontView(),
+      binding: AddAccontBinding(),
     ),
   ];
 }

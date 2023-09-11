@@ -1,22 +1,43 @@
+import 'package:creditum/app/modules/home/pages/accounts.dart';
+import 'package:creditum/app/modules/home/pages/dashboard.dart';
+import 'package:creditum/app/modules/home/pages/transactions.dart';
+import 'package:creditum/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
 class HomeController extends GetxController {
-  RxInt selectedIndex = 0.obs;
+  Rx<NavBarOptions> selectedIndex = NavBarOptions.dashboard.obs;
 
-  IconData? icon(int index) {
+  IconData? icon(NavBarOptions index) {
     switch (index) {
-      case 0:
+      case NavBarOptions.dashboard:
         return FontAwesomeIcons.houseChimney;
-      case 1:
+      case NavBarOptions.analysis:
         return FontAwesomeIcons.chartLine;
-      case 2:
+      case NavBarOptions.transactions:
         return FontAwesomeIcons.listUl;
-      case 3:
+      case NavBarOptions.accounts:
         return FontAwesomeIcons.solidCreditCard;
-      case 4:
-        return FontAwesomeIcons.home;
     }
   }
+
+  Widget? showingPage() {
+    switch (selectedIndex.value) {
+      case NavBarOptions.dashboard:
+        return const Dashboard();
+      case NavBarOptions.analysis:
+        return const SizedBox();
+      case NavBarOptions.transactions:
+        return const Transactions();
+      case NavBarOptions.accounts:
+        return const Accounts();
+    }
+  }
+
+  addAccount() {
+    Get.toNamed(Routes.ADD_ACCONT);
+  }
 }
+
+enum NavBarOptions { dashboard, analysis, transactions, accounts }

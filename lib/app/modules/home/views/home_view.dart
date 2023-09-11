@@ -1,9 +1,9 @@
-import 'package:creditum/app/code/components/cicle_progress.dart';
-import 'package:creditum/app/code/components/logo.dart';
-import 'package:creditum/app/code/components/my_card.dart';
-import 'package:creditum/app/code/components/title_balance.dart';
-import 'package:creditum/app/code/components/transaction_tile.dart';
-import 'package:creditum/app/code/values/colors.dart';
+import 'package:creditum/app/core/components/cicle_progress.dart';
+import 'package:creditum/app/core/components/logo.dart';
+import 'package:creditum/app/core/components/my_card.dart';
+import 'package:creditum/app/core/components/title_balance.dart';
+import 'package:creditum/app/core/components/transaction_tile.dart';
+import 'package:creditum/app/core/values/colors.dart';
 import 'package:creditum/app/modules/home/pages/dashboard.dart';
 import 'package:floating_bottom_navigation_bar/floating_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
@@ -26,8 +26,45 @@ class HomeView extends GetView<HomeController> {
             child: Logo(
           size: 36,
         )),
+        titleSpacing: 0,
+        title: AnimatedSwitcher(
+          duration: const Duration(milliseconds: 200),
+          child: Obx(() {
+            var textStyle = TextStyle(
+                fontSize: 18, fontWeight: FontWeight.w700, color: primaryColor);
+            switch (controller.selectedIndex.value) {
+              case NavBarOptions.dashboard:
+                return Text("Dashboard", style: textStyle);
+              case NavBarOptions.analysis:
+                return Text("Analysis", style: textStyle);
+              case NavBarOptions.transactions:
+                return Row(
+                  children: [
+                    Text("Transactions", style: textStyle),
+                    const Spacer(),
+                    _addButton(),
+                    const SizedBox(width: 8),
+                  ],
+                );
+              case NavBarOptions.accounts:
+                return Row(
+                  children: [
+                    Text("Accounts", style: textStyle),
+                    const Spacer(),
+                    _addButton(
+                      onTap: controller.addAccount,
+                    ),
+                    const SizedBox(width: 8),
+                  ],
+                );
+            }
+          }),
+        ),
       ),
-      body: const Dashboard(),
+      body: Obx(() => AnimatedSwitcher(
+            duration: const Duration(milliseconds: 200),
+            child: controller.showingPage(),
+          )),
       extendBody: true, //<-
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 12.0) +
@@ -43,35 +80,55 @@ class HomeView extends GetView<HomeController> {
               () => Row(
                 //mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: List.generate(
-                  4,
-                  (index) => Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                    child: GestureDetector(
-                      onTap: () => controller.selectedIndex(index),
-                      child: MyCard(
-                        shadowColor: Colors.transparent,
-                        padding: const EdgeInsets.all(12),
-                        color: controller.selectedIndex.value == index
-                            ? Colors.white
-                            : Colors.transparent,
-                        child: Padding(
-                          padding: const EdgeInsets.all(2.0),
-                          child: Icon(
-                            controller.icon(index),
-                            size: 20,
-                            color: controller.selectedIndex.value != index
-                                ? Colors.white
-                                : primaryColor,
+                children: NavBarOptions.values
+                    .map((index) => Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          child: GestureDetector(
+                            onTap: () => controller.selectedIndex(index),
+                            child: MyCard(
+                              shadowColor: Colors.transparent,
+                              padding: const EdgeInsets.all(10),
+                              color: controller.selectedIndex.value == index
+                                  ? Colors.white
+                                  : Colors.transparent,
+                              child: Padding(
+                                padding: const EdgeInsets.all(2.0),
+                                child: Icon(
+                                  controller.icon(index),
+                                  size: 16,
+                                  color: controller.selectedIndex.value != index
+                                      ? Colors.white
+                                      : primaryColor,
+                                ),
+                              ),
+                            ),
                           ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
+                        ))
+                    .toList(),
               ),
             ),
           ),
+        ),
+      ),
+    );
+  }
+
+  Widget _addButton({Function()? onTap}) {
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.all(8),
+        color: Colors.transparent,
+        child: const Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text("Add", style: TextStyle(fontSize: 14)),
+            SizedBox(width: 2),
+            Icon(
+              FontAwesomeIcons.plus,
+              size: 16,
+            ),
+          ],
         ),
       ),
     );
