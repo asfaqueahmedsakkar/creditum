@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class Accounts extends GetView<AccountController> {
-
   const Accounts({super.key});
 
   @override
@@ -14,9 +13,12 @@ class Accounts extends GetView<AccountController> {
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8) +
           const EdgeInsets.only(bottom: 82),
       children: const [
-        AccountTile(accountType: AccountType.cash),
-        AccountTile(accountType: AccountType.mobile_banking),
-        AccountTile(accountType: AccountType.card),
+        AccountTile(
+          accountType: AccountType.cash,
+          title: "Cash balance",
+          balance: '120',
+          identifier: '1235',
+        ),
       ],
     );
   }

@@ -42,7 +42,8 @@ class HomeView extends GetView<HomeController> {
                   children: [
                     Text("Transactions", style: textStyle),
                     const Spacer(),
-                    _addButton(),
+                    _addButton(
+                      onTap: controller.addTransaction,),
                     const SizedBox(width: 8),
                   ],
                 );

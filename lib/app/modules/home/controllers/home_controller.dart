@@ -38,6 +38,10 @@ class HomeController extends GetxController {
   addAccount() {
     Get.toNamed(Routes.ADD_ACCONT);
   }
+
+  addTransaction() {
+    Get.toNamed(Routes.ADD_TRANSACTION);
+  }
 }
 
 enum NavBarOptions { dashboard, analysis, transactions, accounts }

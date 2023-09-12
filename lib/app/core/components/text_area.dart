@@ -54,13 +54,14 @@ class TextArea extends StatelessWidget {
                 hintText: hint,
                 hintStyle: TextStyle(color: Colors.grey[300]),
                 contentPadding: const EdgeInsets.symmetric(
-                  horizontal: 4,
-                  vertical: 8,
+                  horizontal: 8,
+                  vertical: 0,
                 ),
               ),
               style: const TextStyle(
                 fontSize: 16,
                 letterSpacing: 0.2,
+                height: 1.2
               ),
               obscureText: obscure,
               maxLines: singleLine ? 1 : 8,

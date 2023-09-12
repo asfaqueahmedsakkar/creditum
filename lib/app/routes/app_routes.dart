@@ -6,6 +6,7 @@ abstract class Routes {
   static const HOME = _Paths.HOME;
   static const SPLASH_SCREEN = _Paths.SPLASH_SCREEN;
   static const ADD_ACCONT = _Paths.ADD_ACCONT;
+  static const ADD_TRANSACTION = _Paths.ADD_TRANSACTION;
 }
 
 abstract class _Paths {
@@ -13,4 +14,5 @@ abstract class _Paths {
   static const HOME = '/home';
   static const SPLASH_SCREEN = '/splash-screen';
   static const ADD_ACCONT = '/add-accont';
+  static const ADD_TRANSACTION = '/add-transaction';
 }

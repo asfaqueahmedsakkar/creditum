@@ -1,3 +1,5 @@
+import 'package:creditum/app/modules/add_transaction/bindings/add_transaction_binding.dart';
+import 'package:creditum/app/modules/add_transaction/views/add_transaction_view.dart';
 import 'package:get/get.dart';
 
 import '../modules/add_accont/bindings/add_accont_binding.dart';
@@ -29,6 +31,11 @@ class AppPages {
       name: _Paths.ADD_ACCONT,
       page: () => const AddAccontView(),
       binding: AddAccontBinding(),
+    ),
+    GetPage(
+      name: _Paths.ADD_TRANSACTION,
+      page: () => const AddTransactionView(),
+      binding: AddTransactionBinding(),
     ),
   ];
 }

@@ -1,6 +1,7 @@
 import 'package:creditum/app/core/components/account_tile.dart';
 import 'package:creditum/app/core/components/drop_down_area.dart';
 import 'package:creditum/app/core/components/m_button.dart';
+import 'package:creditum/app/core/components/my_card.dart';
 import 'package:creditum/app/core/components/text_area.dart';
 import 'package:creditum/app/core/extensions/string_extenstion.dart';
 import 'package:creditum/app/core/utility/text_formatter.dart';
@@ -11,10 +12,10 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:get/get.dart';
 
-import '../controllers/add_accont_controller.dart';
+import '../controllers/add_transaction_controller.dart';
 
-class AddAccontView extends GetView<AddAccontController> {
-  const AddAccontView({Key? key}) : super(key: key);
+class AddTransactionView extends GetView<AddTransactionController> {
+  const AddTransactionView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +24,7 @@ class AddAccontView extends GetView<AddAccontController> {
         elevation: 0.5,
         backgroundColor: Colors.white,
         title: Text(
-          "Add Account",
+          "Add Transaction",
           style: TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.w700,
@@ -34,25 +35,35 @@ class AddAccontView extends GetView<AddAccontController> {
         titleSpacing: 0,
       ),
       body: ListView(
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
         children: [
-          ValueListenableBuilder(
-            valueListenable: controller.titleController,
-            builder: (_, title, __) => ValueListenableBuilder(
-              valueListenable: controller.accountIdentifier,
-              builder: (_, identifier, __) => ValueListenableBuilder(
-                valueListenable: controller.balance,
-                builder: (_, balance, __) => Obx(
-                  () => AccountTile(
-                    accountType: controller.accountType.value,
-                    title: title.text,
-                    balance: balance.text,
-                    identifier: identifier.text,
-                  ),
-                ),
-              ),
-            ),
-          ),
+          Obx(() => Row(
+                children: TransactionType.values
+                    .map(
+                      (e) => Expanded(
+                        child: Container(
+                          height: 44,
+                          padding: const EdgeInsets.symmetric(horizontal: 4),
+                          child: MyCard(
+                            padding: EdgeInsets.zero,
+                            color: e == controller.selectedTransactionType.value
+                                ? primaryColor
+                                : primaryColor.withOpacity(0.5),
+                            child: Center(
+                              child: Text(
+                                e.name.toCamellaCase(),
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 16,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    )
+                    .toList(),
+              )),
           const SizedBox(height: 16),
           TextArea(
             controller: controller.titleController,

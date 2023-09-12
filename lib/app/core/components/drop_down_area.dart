@@ -72,7 +72,10 @@ class DropdownArea<T> extends StatelessWidget {
             body: ListView.builder(
               padding: const EdgeInsets.symmetric(vertical: 8),
               itemBuilder: (context, index) => SelectableItem(
-                onTap: () => onItemPick(items[index]),
+                onTap: (){
+                  Get.back();
+                  onItemPick(items[index]);
+                },
                 title: itemName == null
                     ? items[index].toString()
                     : itemName!(items[index]),
@@ -86,26 +89,29 @@ class DropdownArea<T> extends StatelessWidget {
       child: InputContainer(
         label: label,
         error: error,
-        disablePadding: false,
+        disablePadding: true,
         enabled: enabled ?? true,
-        child: Row(
-          children: [
-            Expanded(
-              child: Text(
-                getTextContent(),
-                style: getTextStyle(),
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+          child: Row(
+            children: [
+              Expanded(
+                child: Text(
+                  getTextContent(),
+                  style: getTextStyle(),
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                ),
               ),
-            ),
-            RotatedBox(
-                quarterTurns: 1,
-                child: Icon(
-                  Icons.arrow_forward_ios_sharp,
-                  size: 16,
-                  color: enabled != false ? Colors.black : Colors.grey[300],
-                ))
-          ],
+              RotatedBox(
+                  quarterTurns: 1,
+                  child: Icon(
+                    Icons.arrow_forward_ios_sharp,
+                    size: 16,
+                    color: enabled != false ? Colors.black : Colors.grey[300],
+                  ))
+            ],
+          ),
         ),
       ),
     );
@@ -121,8 +127,9 @@ class DropdownArea<T> extends StatelessWidget {
   }
 
   String getTextContent() {
-    if (selectedItem != null && itemName != null)
-      return itemName!(selectedItem!);
+    if (selectedItem != null && itemName != null) {
+      return itemName!(selectedItem as T);
+    }
     return selectedItem?.toString() ?? hint ?? "";
   }
 

@@ -27,10 +27,10 @@ class InputContainer extends StatelessWidget {
         children: [
           if (label != null)
             Padding(
-              padding: const EdgeInsets.only(bottom: 4.0,left: 8),
+              padding: const EdgeInsets.only(bottom: 0.0,left: 8),
               child: Text(
                 label!,
-                style: const TextStyle(fontSize: 12),
+                style:  TextStyle(fontSize: 11,color: Colors.grey[500]),
               ),
             ),
           AbsorbPointer(
@@ -47,7 +47,7 @@ class InputContainer extends StatelessWidget {
                 border: const Border(bottom: BorderSide(color: Colors.black, width: 0.5)),
                 color: enabled?Colors.transparent:Colors.grey[200]
               ),
-              constraints: const BoxConstraints(minHeight: 48),
+              constraints: const BoxConstraints(minHeight: 40),
               alignment: Alignment.center,
               child: child,
             ),

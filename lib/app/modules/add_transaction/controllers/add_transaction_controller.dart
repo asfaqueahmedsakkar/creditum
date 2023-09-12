@@ -4,7 +4,7 @@ import 'package:creditum/app/core/values/enums.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
-class AddAccontController extends GetxController {
+class AddTransactionController extends GetxController {
   TextEditingController titleController = TextEditingController();
 
   Rx<AccountType> accountType = AccountType.card.obs;
@@ -12,6 +12,8 @@ class AddAccontController extends GetxController {
   TextEditingController accountIdentifier = TextEditingController();
 
   TextEditingController balance = TextEditingController(text: "0");
+
+  Rx<TransactionType> selectedTransactionType = TransactionType.debit.obs;
 
   @override
   void dispose() {

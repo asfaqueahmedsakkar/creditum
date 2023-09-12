@@ -3,12 +3,11 @@ import 'package:flutter/services.dart';
 class TextFormatter {
   AllowedTextType? allowedType;
   int? max;
-  int? min;
   List<String>? characters;
 
   TextFormatter.allowType(this.allowedType);
 
-  TextFormatter.range({this.max, this.min});
+  TextFormatter.range({this.max});
 
   TextFormatter.allowCharacters(this.characters);
 
@@ -34,8 +33,13 @@ class TextFormatter {
       }
     }
 
-    if(characters!=null){
+    if (characters != null) {
       return FilteringTextInputFormatter.allow(RegExp(r"\S*"));
+    }
+
+    if (max != null) {
+      return TextInputFormatter.withFunction((oldValue, newValue) =>
+          newValue.text.length > max! ? oldValue : newValue);
     }
 
     return TextInputFormatter.withFunction((oldValue, newValue) => newValue);

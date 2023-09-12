@@ -1,4 +1,5 @@
 import 'package:creditum/app/core/components/my_card.dart';
+import 'package:creditum/app/core/extensions/string_extenstion.dart';
 import 'package:creditum/app/core/values/colors.dart';
 import 'package:creditum/app/core/values/enums.dart';
 import 'package:flutter/material.dart';
@@ -6,9 +7,18 @@ import 'package:flutter/material.dart';
 class AccountTile extends StatelessWidget {
   final AccountType accountType;
 
+  final String title;
+
+  final String balance;
+
+  final String identifier;
+
   const AccountTile({
     super.key,
     required this.accountType,
+    required this.title,
+    required this.balance,
+    required this.identifier,
   });
 
   @override
@@ -19,14 +29,14 @@ class AccountTile extends StatelessWidget {
         color: getColor(),
         child: Column(
           children: [
-            const Row(
+            Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
+                      const Text(
                         "Asfaque Ahmed",
                         style: TextStyle(
                           fontSize: 16,
@@ -35,8 +45,8 @@ class AccountTile extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        "Test account name",
-                        style: TextStyle(
+                        title,
+                        style: const TextStyle(
                           fontSize: 12,
                           color: Colors.white,
                         ),
@@ -44,21 +54,21 @@ class AccountTile extends StatelessWidget {
                     ],
                   ),
                 ),
-                SizedBox(width: 16),
+                const SizedBox(width: 16),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    Text(
+                    const Text(
                       "Balance",
                       style: TextStyle(
                         fontSize: 12,
                         color: Colors.white,
                       ),
                     ),
-                    SizedBox(height: 4),
+                    const SizedBox(height: 4),
                     Text(
-                      "\$ 1,220",
-                      style: TextStyle(
+                      "\$ $balance",
+                      style: const TextStyle(
                         fontSize: 18,
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
@@ -82,7 +92,7 @@ class AccountTile extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "${accountType.name[0].toUpperCase()}${accountType.name.substring(1).replaceAll("_", " ")}",
+                      "${accountType.name.toCamellaCase()}",
                       style: const TextStyle(
                         fontSize: 11,
                         color: Colors.white,
@@ -90,9 +100,9 @@ class AccountTile extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 4),
-                    const Text(
-                      "####",
-                      style: TextStyle(
+                    Text(
+                      identifier,
+                      style: const TextStyle(
                           fontSize: 16, color: Colors.white, letterSpacing: 1),
                     ),
                   ],
