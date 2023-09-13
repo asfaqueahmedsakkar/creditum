@@ -1,4 +1,5 @@
 import 'package:creditum/app/core/components/account_tile.dart';
+import 'package:creditum/app/core/components/amount_input_area.dart';
 import 'package:creditum/app/core/components/drop_down_area.dart';
 import 'package:creditum/app/core/components/m_button.dart';
 import 'package:creditum/app/core/components/my_card.dart';
@@ -31,6 +32,16 @@ class AddTransactionView extends GetView<AddTransactionController> {
             color: primaryColor,
           ),
         ),
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(
+              FontAwesomeIcons.check,
+              size: 20,
+            ),
+          ),
+          const SizedBox(width: 16),
+        ],
         centerTitle: true,
         titleSpacing: 0,
       ),
@@ -44,17 +55,25 @@ class AddTransactionView extends GetView<AddTransactionController> {
                         child: Container(
                           height: 44,
                           padding: const EdgeInsets.symmetric(horizontal: 4),
-                          child: MyCard(
-                            padding: EdgeInsets.zero,
-                            color: e == controller.selectedTransactionType.value
-                                ? primaryColor
-                                : primaryColor.withOpacity(0.5),
-                            child: Center(
-                              child: Text(
-                                e.name.toCamellaCase(),
-                                style: const TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 16,
+                          child: GestureDetector(
+                            onTap: () => controller.changeTransactionType(e),
+                            child: MyCard(
+                              padding: EdgeInsets.zero,
+                              color:
+                                  e == controller.selectedTransactionType.value
+                                      ? primaryColor
+                                      : Colors.white,
+                              child: Center(
+                                child: Text(
+                                  e.name.toCamellaCase(),
+                                  style: TextStyle(
+                                    color: e !=
+                                            controller
+                                                .selectedTransactionType.value
+                                        ? primaryColor
+                                        : Colors.white,
+                                    fontSize: 16,
+                                  ),
                                 ),
                               ),
                             ),
@@ -65,47 +84,37 @@ class AddTransactionView extends GetView<AddTransactionController> {
                     .toList(),
               )),
           const SizedBox(height: 16),
-          TextArea(
-            controller: controller.titleController,
-            label: "Account title",
-            hint: "Account title",
+          AmountInputArea(
+            controller: controller.amountController,
           ),
-          Obx(
-            () => DropdownArea<AccountType>(
-              onItemPick: controller.accountType,
-              items: AccountType.values,
-              label: "Account type",
-              selectedItem: controller.accountType.value,
-              itemName: (item) =>
-                  "${item.name.toCamellaCase(characterToReplaceWith: " ")}",
-            ),
-          ),
-          TextArea(
-            controller: controller.accountIdentifier,
-            label: "Account identifier",
-            hint: "Account identifier",
-            textInputType: TextInputType.phone,
-            allowedFormatter: [
-              TextFormatter.range(max: 8),
+          Row(
+            children: [
+              Expanded(
+                child: Obx(
+                  () => DropdownArea<AccountType>(
+                    onItemPick: controller.accountType,
+                    items: AccountType.values,
+                    label: "Account type",
+                    selectedItem: controller.accountType.value,
+                    itemName: (item) =>
+                        "${item.name.toCamellaCase(characterToReplaceWith: " ")}",
+                  ),
+                ),
+              ),
+              const SizedBox(width: 16),
+              Expanded(
+                child: Obx(
+                  () => DropdownArea<AccountType>(
+                    onItemPick: controller.accountType,
+                    items: AccountType.values,
+                    label: "Account type",
+                    selectedItem: controller.accountType.value,
+                    itemName: (item) =>
+                        "${item.name.toCamellaCase(characterToReplaceWith: " ")}",
+                  ),
+                ),
+              ),
             ],
-          ),
-          TextArea(
-            controller: controller.balance,
-            label: "Balance",
-            hint: "Balance",
-            textInputType: TextInputType.phone,
-            allowedFormatter: [
-              TextFormatter.range(max: 8),
-            ],
-            prefix: const Icon(
-              FontAwesomeIcons.dollarSign,
-              size: 16,
-            ),
-          ),
-          MButton(
-            title: "Save",
-            onTap: () {},
-            color: successColor,
           ),
         ],
       ),

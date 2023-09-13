@@ -30,6 +30,16 @@ class AddAccontView extends GetView<AddAccontController> {
             color: primaryColor,
           ),
         ),
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(
+              FontAwesomeIcons.check,
+              size: 20,
+            ),
+          ),
+          const SizedBox(width: 16),
+        ],
         centerTitle: true,
         titleSpacing: 0,
       ),
@@ -90,11 +100,6 @@ class AddAccontView extends GetView<AddAccontController> {
               FontAwesomeIcons.dollarSign,
               size: 16,
             ),
-          ),
-          MButton(
-            title: "Save",
-            onTap: () {},
-            color: successColor,
           ),
         ],
       ),

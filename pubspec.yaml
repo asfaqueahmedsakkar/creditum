@@ -17,6 +17,8 @@ dependencies:
   floating_bottom_navigation_bar: any
   custom_date_range_picker: any
 
+  auto_size_text: any
+
   flutter: 
     sdk: flutter
 
