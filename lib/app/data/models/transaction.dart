@@ -1,17 +1,18 @@
 import 'package:creditum/app/core/values/enums.dart';
 import 'package:creditum/app/data/models/model.dart';
 
-class Account extends Model {
+class Transaction extends Model {
   String? title;
   String? identifier;
-  String? balance;
-  AccountType? accountType;
+  String? amount;
+  TransactionType? transactionType;
+  LoanType? loanType;
 
-  Account(
+  Transaction(
       {required this.title,
-      required this.accountType,
+      required this.transactionType,
       this.identifier,
-      required this.balance,
+      required this.amount,
       String? id,
       String? createdBy})
       : super(
@@ -21,20 +22,20 @@ class Account extends Model {
           createdBy: createdBy,
         );
 
-  Account.fromJson({required Map<String, dynamic> json})
+  Transaction.fromJson({required Map<String, dynamic> json})
       : super.fromJson(json) {
     title = json['title'];
     identifier = json['identifier'];
-    balance = json['balance'];
-    accountType = AccountType.values.byName(json['account_type']);
+    amount = json['amount'];
+    transactionType = TransactionType.values.byName(json['account_type']);
   }
 
   @override
   Map<String, dynamic> toJson() {
     json['title'] = title;
     json['identifier'] = identifier;
-    json['account_type'] = accountType?.name;
-    json['balance'] = balance;
+    json['account_type'] = transactionType?.name;
+    json['amount'] = amount;
     return super.toJson();
   }
 }
