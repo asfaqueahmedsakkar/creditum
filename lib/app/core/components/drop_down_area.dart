@@ -99,7 +99,7 @@ class DropdownArea<T> extends StatelessWidget {
                 child: Text(
                   getTextContent(),
                   style: getTextStyle(),
-                  maxLines: 2,
+                  maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                 ),
               ),
@@ -130,7 +130,7 @@ class DropdownArea<T> extends StatelessWidget {
     if (selectedItem != null && itemName != null) {
       return itemName!(selectedItem as T);
     }
-    return selectedItem?.toString() ?? hint ?? "";
+    return selectedItem?.toString() ?? hint ?? "Select $label";
   }
 
   getIndex(T? selectedItem) {

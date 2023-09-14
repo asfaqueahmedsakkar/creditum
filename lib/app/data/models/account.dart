@@ -1,19 +1,22 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:creditum/app/core/values/enums.dart';
 import 'package:creditum/app/data/models/model.dart';
 
-class Account extends Model {
+class AccountModel extends Model {
   String? title;
   String? identifier;
   String? balance;
   AccountType? accountType;
 
-  Account(
+  DocumentSnapshot? snapshot;
+
+  AccountModel(
       {required this.title,
       required this.accountType,
-      this.identifier,
+      required this.identifier,
       required this.balance,
       String? id,
-      String? createdBy})
+      required String? createdBy})
       : super(
           createdAt: DateTime.now(),
           updatedAt: DateTime.now(),
@@ -21,7 +24,7 @@ class Account extends Model {
           createdBy: createdBy,
         );
 
-  Account.fromJson({required Map<String, dynamic> json})
+  AccountModel.fromJson({required Map<String, dynamic> json})
       : super.fromJson(json) {
     title = json['title'];
     identifier = json['identifier'];

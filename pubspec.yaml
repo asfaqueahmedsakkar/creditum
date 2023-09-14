@@ -8,6 +8,7 @@ environment:
 dependencies:
   cupertino_icons: ^1.0.2
   get: 4.6.5
+
   firebase_core: any
   cloud_firestore: any
 
@@ -18,6 +19,8 @@ dependencies:
   custom_date_range_picker: any
 
   auto_size_text: any
+  get_storage: any
+
 
   flutter: 
     sdk: flutter

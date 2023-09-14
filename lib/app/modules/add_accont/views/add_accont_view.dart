@@ -32,7 +32,7 @@ class AddAccontView extends GetView<AddAccontController> {
         ),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: controller.save,
             icon: const Icon(
               FontAwesomeIcons.check,
               size: 20,
@@ -64,10 +64,13 @@ class AddAccontView extends GetView<AddAccontController> {
             ),
           ),
           const SizedBox(height: 16),
-          TextArea(
-            controller: controller.titleController,
-            label: "Account title",
-            hint: "Account title",
+          Obx(
+            ()=> TextArea(
+              controller: controller.titleController,
+              label: "Account title",
+              hint: "Account title",
+              error: controller.titleError.value,
+            ),
           ),
           Obx(
             () => DropdownArea<AccountType>(
@@ -79,14 +82,17 @@ class AddAccontView extends GetView<AddAccontController> {
                   "${item.name.toCamellaCase(characterToReplaceWith: " ")}",
             ),
           ),
-          TextArea(
-            controller: controller.accountIdentifier,
-            label: "Account identifier",
-            hint: "Account identifier",
-            textInputType: TextInputType.phone,
-            allowedFormatter: [
-              TextFormatter.range(max: 8),
-            ],
+          Obx(
+            ()=> TextArea(
+              controller: controller.accountIdentifier,
+              label: "Account identifier",
+              hint: "Account identifier",
+              textInputType: TextInputType.phone,
+              error: controller.identifierError.value,
+              allowedFormatter: [
+                TextFormatter.range(max: 8),
+              ],
+            ),
           ),
           TextArea(
             controller: controller.balance,

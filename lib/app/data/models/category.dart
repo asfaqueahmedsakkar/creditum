@@ -1,10 +1,14 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:creditum/app/data/models/model.dart';
 
-class Category extends Model {
+class CategoryModel extends Model {
   String? name;
   String? parentId;
 
-  Category({required this.name, this.parentId, String? id, String? createdBy})
+  DocumentSnapshot? snapshot;
+
+  CategoryModel(
+      {required this.name, this.parentId, String? id, String? createdBy})
       : super(
           createdAt: DateTime.now(),
           updatedAt: DateTime.now(),
@@ -12,7 +16,7 @@ class Category extends Model {
           createdBy: createdBy,
         );
 
-  Category.fromJson({required Map<String, dynamic> json})
+  CategoryModel.fromJson({required Map<String, dynamic> json})
       : super.fromJson(json) {
     name = json['name'];
     parentId = json['parent_id'];

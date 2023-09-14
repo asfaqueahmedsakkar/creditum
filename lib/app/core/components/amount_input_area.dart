@@ -1,12 +1,24 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:creditum/app/core/extensions/string_extenstion.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
-class AmountInputArea extends StatelessWidget {
+class AmountInputArea extends StatefulWidget {
   final AmountInputAreaController controller;
 
   const AmountInputArea({super.key, required this.controller});
+
+  @override
+  State<AmountInputArea> createState() => _AmountInputAreaState();
+}
+
+class _AmountInputAreaState extends State<AmountInputArea> {
+  @override
+  void initState() {
+    Future.delayed(const Duration(milliseconds: 300), _showKeyPad);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -18,13 +30,16 @@ class AmountInputArea extends StatelessWidget {
         color: Colors.transparent,
         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 20),
         child: Obx(() => AutoSizeText(
-              "\$${controller.amount.isEmpty ? "0" : controller.amount}",
+              "\$${widget.controller.amount.isEmpty ? "0" : widget.controller.amount.toString().currencyConvertor()}",
               textAlign: TextAlign.center,
               style: TextStyle(
-                fontSize: 40,
+                fontSize: 52,
                 fontWeight: FontWeight.w500,
-                color: controller.amount.isEmpty ? Colors.grey : Colors.black,
+                color: widget.controller.amount.isEmpty
+                    ? Colors.grey
+                    : Colors.black,
               ),
+              maxLines: 1,
               minFontSize: 12,
               maxFontSize: 52,
             )),
@@ -34,7 +49,7 @@ class AmountInputArea extends StatelessWidget {
 
   void _showKeyPad() {
     Get.bottomSheet(
-      KeyPad(controller: controller),
+      KeyPad(controller: widget.controller),
       barrierColor: Colors.black.withOpacity(0.075),
     );
   }
@@ -44,9 +59,11 @@ class AmountInputAreaController {
   String get amount => _amount.value;
   final RxString _amount = "".obs;
 
-  add(String s) => amount.isNotEmpty && int.parse(amount) == 0
-      ? _amount.value = s
-      : _amount.value = "$amount$s";
+  add(String s) => amount.length == 16
+      ? _amount.value = amount
+      : amount.isNotEmpty && amount == "0"
+          ? _amount.value = s
+          : _amount.value = "$amount$s";
 
   backSpace() => amount.isEmpty
       ? _amount.value = ""

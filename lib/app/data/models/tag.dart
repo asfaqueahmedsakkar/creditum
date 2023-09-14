@@ -1,9 +1,12 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:creditum/app/data/models/model.dart';
 
-class Tag extends Model {
+class TagModel extends Model {
   String? name;
 
-  Tag({
+  DocumentSnapshot? snapshot;
+
+  TagModel({
     required this.name,
     String? id,
     String? createdBy,
@@ -14,7 +17,8 @@ class Tag extends Model {
           createdBy: createdBy,
         );
 
-  Tag.fromJson({required Map<String, dynamic> json}) : super.fromJson(json) {
+  TagModel.fromJson({required Map<String, dynamic> json})
+      : super.fromJson(json) {
     name = json['name'];
   }
 

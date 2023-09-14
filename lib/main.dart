@@ -1,3 +1,4 @@
+import 'package:creditum/app/core/controller/app_controller.dart';
 import 'package:creditum/app/core/values/colors.dart';
 import 'package:creditum/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -14,8 +15,26 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(
-    GetMaterialApp(
+  runApp(const App());
+}
+
+class App extends StatefulWidget {
+  const App({super.key});
+
+  @override
+  State<App> createState() => _AppState();
+}
+
+class _AppState extends State<App> {
+  @override
+  void initState() {
+    Get.put<AppController>(AppController());
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return GetMaterialApp(
       title: "Application",
       initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,
@@ -26,6 +45,6 @@ void main() async {
           primarySwatch: Swatcher.createMaterialColor(primaryColor),
         ),
       ),
-    ),
-  );
+    );
+  }
 }

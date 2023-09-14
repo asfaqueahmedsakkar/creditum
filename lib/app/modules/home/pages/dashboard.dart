@@ -1,10 +1,13 @@
 import 'package:creditum/app/core/components/my_card.dart';
 import 'package:creditum/app/core/components/transaction_tile.dart';
+import 'package:creditum/app/core/extensions/string_extenstion.dart';
 import 'package:creditum/app/core/values/colors.dart';
+import 'package:creditum/app/modules/home/controllers/dashboard_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
 
-class Dashboard extends StatelessWidget {
+class Dashboard extends GetView<DashboardController> {
   const Dashboard({super.key});
 
   @override
@@ -16,18 +19,20 @@ class Dashboard extends StatelessWidget {
         MyCard(
           padding: const EdgeInsets.all(36),
           color: primaryColor.withOpacity(0.7),
-          child: const Column(
+          child:  Column(
             children: [
-              Text(
-                "\$ 4,000.50",
-                style: TextStyle(
-                  fontSize: 36,
-                  fontWeight: FontWeight.w500,
-                  color: Colors.white,
+              Obx(
+                ()=>  Text(
+                  "\$ ${controller.balance.value!.currencyConvertor()}",
+                  style: const TextStyle(
+                    fontSize: 36,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.white,
+                  ),
                 ),
               ),
-              SizedBox(height: 4),
-              Text(
+              const SizedBox(height: 4),
+              const Text(
                 "Available Balance",
                 style: TextStyle(
                   fontSize: 14,
