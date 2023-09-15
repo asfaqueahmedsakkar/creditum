@@ -12,7 +12,6 @@ class AppController extends GetxController {
   @override
   void onInit() {
     userId = GetStorage().read("userId");
-
     if (userId == null) {
       userId = _getId();
       GetStorage().write("userId", userId);

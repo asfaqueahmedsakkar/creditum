@@ -1,4 +1,5 @@
 import 'package:creditum/app/modules/home/controllers/account_controller.dart';
+import 'package:creditum/app/modules/home/controllers/category_controller.dart';
 import 'package:creditum/app/modules/home/controllers/dashboard_controller.dart';
 import 'package:creditum/app/modules/home/controllers/transaction_controller.dart';
 import 'package:get/get.dart';
@@ -12,5 +13,6 @@ class HomeBinding extends Bindings {
     Get.put<TransactionController>(TransactionController());
     Get.put<DashboardController>(DashboardController());
     Get.put<AccountController>(AccountController());
+    Get.put<CategoryController>(CategoryController());
   }
 }

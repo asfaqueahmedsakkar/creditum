@@ -67,13 +67,10 @@ class DateTimePickerArea extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                 ),
               ),
-              RotatedBox(
-                quarterTurns: 1,
-                child: Icon(
-                  Icons.calendar_month_sharp,
-                  size: 16,
-                  color: enabled != false ? Colors.black : Colors.grey[300],
-                ),
+              Icon(
+                Icons.calendar_month_sharp,
+                size: 20,
+                color: enabled != false ? Colors.black : Colors.grey[300],
               ),
             ],
           ),

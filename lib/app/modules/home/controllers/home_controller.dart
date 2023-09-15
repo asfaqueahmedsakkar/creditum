@@ -25,7 +25,7 @@ class HomeController extends GetxController {
   Widget? showingPage() {
     switch (selectedIndex.value) {
       case NavBarOptions.dashboard:
-        return const Dashboard();
+        return Dashboard();
       case NavBarOptions.analysis:
         return const SizedBox();
       case NavBarOptions.transactions:

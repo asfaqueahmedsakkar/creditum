@@ -67,17 +67,17 @@ class AddTransactionView extends GetView<AddTransactionController> {
                 if (controller.selectedTransactionType.value !=
                     TransactionType.credit)
                   _fromAccount(),
-                if (controller.selectedTransactionType.value !=
-                    TransactionType.credit)
+                if (controller.selectedTransactionType.value ==
+                    TransactionType.transfer)
                   const SizedBox(width: 16),
                 if (controller.selectedTransactionType.value !=
                     TransactionType.debit)
                   _toAccount(),
                 if (controller.selectedTransactionType.value ==
-                    TransactionType.credit)
+                    TransactionType.debit)
                   const SizedBox(width: 16),
-                if (controller.selectedTransactionType.value !=
-                    TransactionType.transfer)
+                if (controller.selectedTransactionType.value ==
+                    TransactionType.debit)
                   _debitCategory(),
               ],
             );
@@ -112,10 +112,11 @@ class AddTransactionView extends GetView<AddTransactionController> {
       child: Obx(
         () => DropdownArea<AccountModel>(
           onItemPick: controller.fromAccount,
-          items: controller.accounts.value??[],
+          items: controller.accounts.value ?? [],
           label: "From account",
           selectedItem: controller.fromAccount.value,
           itemName: (item) => "${item.title}",
+          itemId: (item) => item.id,
         ),
       ),
     );
@@ -130,6 +131,7 @@ class AddTransactionView extends GetView<AddTransactionController> {
           label: "To account",
           selectedItem: controller.toAccount.value,
           itemName: (item) => "${item.title}",
+          itemId: (item) => item.id,
         ),
       ),
     );
@@ -140,32 +142,39 @@ class AddTransactionView extends GetView<AddTransactionController> {
       child: Obx(
         () => DropdownArea<CategoryModel>(
           onItemPick: controller.selectedCategory,
-          items: controller.categories.value,
+          items: controller.categories.value ?? [],
           label: "Category",
           selectedItem: controller.selectedCategory.value,
           itemName: (item) => "${item.name}",
+          itemId: (item) => item.id,
         ),
       ),
     );
   }
 
   Expanded _transactionTypeTab(TransactionType e) {
+    bool disable =
+        e == TransactionType.transfer && controller.accounts.value!.length <= 1;
     return Expanded(
       child: Container(
         height: 44,
         padding: const EdgeInsets.symmetric(horizontal: 4),
         child: GestureDetector(
-          onTap: () => controller.changeTransactionType(e),
+          onTap: disable ? null : () => controller.changeTransactionType(e),
           child: MyCard(
             padding: EdgeInsets.zero,
-            color: e == controller.selectedTransactionType.value
-                ? primaryColor
-                : Colors.white,
+            color: disable
+                ? Colors.grey[300]
+                : e == controller.selectedTransactionType.value
+                    ? primaryColor
+                    : Colors.white,
             child: Center(
               child: Text(
                 e.name.toCamellaCase(),
                 style: TextStyle(
-                  color: e != controller.selectedTransactionType.value
+                  color: disable
+                      ? Colors.grey
+                      :e != controller.selectedTransactionType.value
                       ? primaryColor
                       : Colors.white,
                   fontSize: 16,
