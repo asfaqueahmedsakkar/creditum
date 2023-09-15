@@ -8,7 +8,7 @@ class Empty extends StatelessWidget {
     return Center(
       child: Image.asset(
         "assets/icons/empty.png",
-        height: 80,
+        height: 120,
       ),
     );
   }

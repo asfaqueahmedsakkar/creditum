@@ -17,6 +17,7 @@ dependencies:
   swatcher: any
   floating_bottom_navigation_bar: any
   custom_date_range_picker: any
+  omni_datetime_picker: any
 
   auto_size_text: any
   get_storage: any

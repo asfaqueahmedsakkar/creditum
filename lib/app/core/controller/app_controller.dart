@@ -12,8 +12,9 @@ class AppController extends GetxController {
   @override
   void onInit() {
     userId = GetStorage().read("userId");
+
     if (userId == null) {
-      userId = Random().nextInt(20000).toString();
+      userId = _getId();
       GetStorage().write("userId", userId);
       AccountService().addAccount(AccountModel(
         title: "Cash",
@@ -24,5 +25,9 @@ class AppController extends GetxController {
       ));
     }
     super.onInit();
+  }
+
+  String? _getId() {
+    return "xxxhasu";
   }
 }

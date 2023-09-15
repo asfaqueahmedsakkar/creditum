@@ -28,15 +28,34 @@ class TransactionService {
     }
   }
 
-  Future<List<TransactionModel>> getTransactions(String userId,
-      {DocumentSnapshot? lastDocument}) async {
+  Future<List<TransactionModel>> getTransactions(
+    String userId, {
+    DocumentSnapshot? lastDocument,
+    DateTime? fromDate,
+    DateTime? toDate,
+  }) async {
     Query query = collection.where("created_by", isEqualTo: userId);
 
     if (lastDocument != null) {
       query = query.startAfterDocument(lastDocument);
     }
+    if (fromDate != null) {
+      query = query.where("transaction_date",
+          isGreaterThan: Timestamp.fromDate(fromDate));
+    }
+    if (toDate != null) {
+      query = query.where("transaction_date",
+          isLessThan: Timestamp.fromDate(toDate.add(const Duration(days: 1))));
+    } else {
+      if (fromDate != null) {
+        query = query.where("transaction_date",
+            isLessThan:
+                Timestamp.fromDate(fromDate.add(const Duration(days: 1))));
+      }
+    }
 
-    QuerySnapshot querySnapshot = await query.get();
+    QuerySnapshot querySnapshot =
+        await query.orderBy("transaction_date", descending: true).get();
     return querySnapshot.docs
         .map((e) =>
             TransactionModel.fromJson(json: e.data() as Map<String, dynamic>)

@@ -10,6 +10,7 @@ class TransactionModel extends Model {
   String? fromAccount;
   String? toAccount;
   String? debitCategory;
+  DateTime? transactionDate;
   List<String>? tags;
 
   DocumentSnapshot? snapshot;
@@ -22,6 +23,7 @@ class TransactionModel extends Model {
     this.fromAccount,
     this.toAccount,
     this.debitCategory,
+    required this.transactionDate,
     this.tags,
     String? id,
     String? createdBy,
@@ -43,6 +45,7 @@ class TransactionModel extends Model {
     fromAccount = json['from_account'];
     toAccount = json['to_account'];
     debitCategory = json['debit_category'];
+    transactionDate = (json['transaction_date'] as Timestamp?)?.toDate();
     tags = json['tags'];
   }
 
@@ -56,6 +59,8 @@ class TransactionModel extends Model {
     json['to_account'] = toAccount;
     json['debit_category'] = debitCategory;
     json['tags'] = tags;
+    json['transaction_date'] =
+        Timestamp.fromDate(transactionDate ?? DateTime.now());
     return super.toJson();
   }
 }

@@ -1,6 +1,7 @@
 import 'dart:ffi';
 
 import 'package:creditum/app/core/components/amount_input_area.dart';
+import 'package:creditum/app/core/components/date_picker_area.dart';
 import 'package:creditum/app/core/components/drop_down_area.dart';
 import 'package:creditum/app/core/components/my_card.dart';
 import 'package:creditum/app/core/components/tag_input_area.dart';
@@ -86,6 +87,11 @@ class AddTransactionView extends GetView<AddTransactionController> {
             label: "Transaction title",
             hint: "Transaction title",
           ),
+          Obx(() => DateTimePickerArea(
+                label: "Date",
+                onDatePick: controller.date,
+                selectedDate: controller.date.value,
+              )),
           Obx(() => TagInputArea<TagModel>(
                 allTags: controller.allTags.value,
                 selectedTags: controller.selectedTags.value,
@@ -95,7 +101,7 @@ class AddTransactionView extends GetView<AddTransactionController> {
                 label: "Tags",
                 getItemName: (tag) => tag.name ?? "",
                 getItemId: (tag) => tag.name,
-              ))
+              )),
         ],
       ),
     );
@@ -106,7 +112,7 @@ class AddTransactionView extends GetView<AddTransactionController> {
       child: Obx(
         () => DropdownArea<AccountModel>(
           onItemPick: controller.fromAccount,
-          items: controller.accounts.value,
+          items: controller.accounts.value??[],
           label: "From account",
           selectedItem: controller.fromAccount.value,
           itemName: (item) => "${item.title}",
@@ -120,7 +126,7 @@ class AddTransactionView extends GetView<AddTransactionController> {
       child: Obx(
         () => DropdownArea<AccountModel>(
           onItemPick: controller.toAccount,
-          items: controller.accounts.value,
+          items: controller.accounts.value ?? [],
           label: "To account",
           selectedItem: controller.toAccount.value,
           itemName: (item) => "${item.title}",

@@ -5,6 +5,7 @@ import 'package:creditum/app/core/values/enums.dart';
 import 'package:creditum/app/data/models/account.dart';
 import 'package:creditum/app/data/models/category.dart';
 import 'package:creditum/app/data/models/tag.dart';
+import 'package:creditum/app/modules/home/controllers/account_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
@@ -28,9 +29,12 @@ class AddTransactionController extends GetxController {
   Rx<AccountModel?> toAccount = Rx(null);
   Rx<CategoryModel?> selectedCategory = Rx(null);
 
-  Rx<List<AccountModel>> accounts = Rx([]);
+  Rx<List<AccountModel>?> get accounts =>
+      Get.find<AccountController>().accounts;
 
-  Rx<List<CategoryModel>> categories=Rx([]);
+  Rx<List<CategoryModel>> categories = Rx([]);
+
+  Rx<DateTime> date = Rx(DateTime.now());
 
   @override
   void dispose() {

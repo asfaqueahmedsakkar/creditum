@@ -67,7 +67,7 @@ class AccountTile extends StatelessWidget {
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      "\$ $balance",
+                      "\$${balance.currencyConvertor()}",
                       style: const TextStyle(
                         fontSize: 18,
                         color: Colors.white,

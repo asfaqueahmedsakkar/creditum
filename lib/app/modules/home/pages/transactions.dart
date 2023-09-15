@@ -1,7 +1,10 @@
+import 'package:creditum/app/core/components/empty.dart';
+import 'package:creditum/app/core/components/loading.dart';
 import 'package:creditum/app/core/components/my_card.dart';
 import 'package:creditum/app/core/components/transaction_tile.dart';
 import 'package:creditum/app/core/extensions/date_extension.dart';
 import 'package:creditum/app/core/values/colors.dart';
+import 'package:creditum/app/data/models/transaction.dart';
 import 'package:creditum/app/modules/home/controllers/transaction_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -60,16 +63,24 @@ class Transactions extends GetView<TransactionController> {
           ),
         ),
         Expanded(
-          child: ListView(
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8) +
-                const EdgeInsets.only(bottom: 82),
-            children: const [
-              TransactionTile(),
-              TransactionTile(),
-              TransactionTile(),
-              TransactionTile(),
-              TransactionTile(),
-            ],
+          child: Obx(
+            () => controller.transactions.value == null
+                ? const Loading()
+                : controller.transactions.value!.isEmpty
+                    ? const Empty()
+                    : ListView.builder(
+                        padding: const EdgeInsets.symmetric(
+                                horizontal: 12, vertical: 8) +
+                            const EdgeInsets.only(bottom: 82),
+                        itemBuilder: (BuildContext context, int index) {
+                          TransactionModel transaction =
+                              controller.transactions.value![index];
+                          return const TransactionTile(
+
+                          );
+                        },
+                        itemCount: controller.transactions.value!.length,
+                      ),
           ),
         ),
       ],
